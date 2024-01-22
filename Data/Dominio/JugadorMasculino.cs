@@ -1,11 +1,12 @@
 ﻿using Data.Dominio.Interfaces;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Dominio
 {
 	public class JugadorMasculino : IJugadorMasculino
 	{
-		[Key]
+		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
 
 		[Required(ErrorMessage = "El campo Nombre es requerido")]

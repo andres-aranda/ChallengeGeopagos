@@ -1,0 +1,23 @@
+﻿@page "/"
+@using Dtos
+@using Presentacion.Servicios.Interfaces
+@inject IJugadoresService jugadoresService
+
+@inject DialogService dialogService
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+<RadzenButton Click="@ButtonClicked" Text="Hi"></RadzenButton>
+
+
+@code {
+
+
+
+	void ButtonClicked()
+	{
+		dialogService.Alert("Hi");
+	}
+}

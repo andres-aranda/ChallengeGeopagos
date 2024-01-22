@@ -8,6 +8,7 @@
 		public int IdJugador2 { get; set; }
 		public int? IdGanador { get; set; }
 		public int? IdTorneo { get; set; }
+		public int? IPartidoSiguiente { get; set; }
 
 	}
 }

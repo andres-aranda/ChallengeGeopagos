@@ -1,0 +1,40 @@
+﻿@page "/torneos"
+@using Dtos
+@layout MainLayout
+
+<PageTitle>Torneos</PageTitle>
+<RadzenStack Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.Start" AlignItems="Radzen.AlignItems.Center">
+
+	<p class="h2 m-3">Torneos</p>
+	<RadzenButton Icon="add_circle_outline" Style="width: 36px; height: 36px; vertical-align: middle; bottom: 0px; right: 0px" Click="@AddTorneo"></RadzenButton>
+
+</RadzenStack>
+@if (cargando)
+{
+    <RadzenStack JustifyContent="Radzen.JustifyContent.Center" Style="height: 109px">
+        <RadzenText Text="Cargando..." Style="text-align: center; margin-bottom: -60px"></RadzenText>
+        <div class="rz-m-12">
+            <RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+        </div>
+    </RadzenStack>
+}
+<RadzenStack>
+    <RadzenRow>
+        <RadzenColumn SizeMD=12>
+            <RadzenDataGrid  ColumnWidth="200px" AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+                            Data="@Torneos" TItem="TorneoDto" >
+                <Columns>
+                    <RadzenDataGridColumn TItem="TorneoDto" Property="Id" Title="Id">
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="TorneoDto" Property="FechaFinalizacion" Title="Fecha Finalizacion">
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="TorneoDto" Property="Ganador" Title="Ganador">
+                    </RadzenDataGridColumn>
+
+				</Columns>
+
+            </RadzenDataGrid>
+
+        </RadzenColumn>
+    </RadzenRow>
+</RadzenStack>

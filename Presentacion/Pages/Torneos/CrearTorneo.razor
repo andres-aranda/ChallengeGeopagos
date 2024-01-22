@@ -1,0 +1,75 @@
+@page "/CrearTorneo"
+@using Presentacion.Pages.Jugadores
+@layout MainLayout
+
+
+<RadzenAlert @bind-Visible="@ErrorTupla" AlertStyle="AlertStyle.Danger" ShowIcon="false" Variant="Variant.Flat" Shade="Shade.Lighter">
+	Debe seleccionar una cantidad de jugadores que permita una cantidad de equipos par.
+</RadzenAlert>
+
+<RadzenStack Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.SpaceBetween">
+	<RadzenStack Class="rz-p-sm-12" Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.Start" AlignItems="Radzen.AlignItems.Center">
+		<RadzenSwitch @bind-Value=@torneoMasculino Change=@(args => OnChangeTipoTorneo()) InputAttributes="@(new Dictionary<string,object>(){ { "aria-label", "Switch value" }})" />
+
+		@if (torneoMasculino)
+		{
+			<span class="badge rounded-pill text-bg-primary" style="width: 156px; height: 21px">Crear Partido Masculino</span>
+		}
+		else
+		{
+			<span class="badge rounded-pill text-bg-danger">Crear Partido Femenino</span>
+		}
+
+	</RadzenStack>
+	<RadzenStack Class="rz-p-sm-12" Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.Start" AlignItems="Radzen.AlignItems.Center">
+
+		<RadzenButton Click=@(args => CrearNuevoTorneo()) Text="Crear Torneo" ButtonStyle="ButtonStyle.Primary" Size="Radzen.ButtonSize.Small" />
+		<RadzenButton Click=@(args => CrearNuevoTorneoYFinalizar()) Text="Crear Y Finalizar Torneo" ButtonStyle="Radzen.ButtonStyle.Secondary" Size="Radzen.ButtonSize.Small" />
+
+	</RadzenStack>
+</RadzenStack>
+
+
+
+@if (torneoMasculino)
+{
+	<p class="h2 m-3">Jugadores Masculinos</p>
+	@if (cargando)
+	{
+		<RadzenStack JustifyContent="Radzen.JustifyContent.Center" Style="height: 109px">
+			<RadzenText Text="Cargando..." Style="text-align: center; margin-bottom: -60px"></RadzenText>
+			<div class="rz-m-12">
+				<RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+			</div>
+		</RadzenStack>
+	}
+	<div class="d-flex flex-wrap">
+		@foreach (var jugador in jugadoresMasculinos)
+		{
+			<CardJugadorMasculino permitirSeleccion="true" OnClick="@SeleccionarJugadorMasculino" mostrarComoLinea=true jugadorMasculino="@jugador"></CardJugadorMasculino>
+		}
+	</div>
+}
+else
+{
+	<p class="h2 m-3">Jugadores Femeninos</p>
+	@if (cargando)
+	{
+		<RadzenStack JustifyContent="Radzen.JustifyContent.Center" Style="height: 109px">
+			<RadzenText Text="Cargando..." Style="text-align: center; margin-bottom: -60px"></RadzenText>
+			<div class="rz-m-12">
+				<RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+			</div>
+		</RadzenStack>
+	}
+	<div class="d-flex flex-wrap">
+		@foreach (var jugador in jugadoresFemeninos)
+		{
+			<CardJugadorFemenino permitirSeleccion="true" OnClick="@SeleccionarJugadorFemenino" mostrarComoLinea=true jugadorFemenino="@jugador"></CardJugadorFemenino>
+
+		}
+	</div>
+
+}
+
+

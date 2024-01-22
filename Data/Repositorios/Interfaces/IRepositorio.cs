@@ -7,9 +7,9 @@ namespace Data.Repositorios.Interfaces
 		IEnumerable<T> GetAll();
 		IEnumerable<T> GetFromQuery(Expression<Func<T, bool>> query);
 		T? GetById(int id);
-		void Add(T entity);
+		T? Add(T entity);
 		void AddRange(IEnumerable<T> entities);
-		void Update(T entity);
+		T? Update(T entity);
 		void Delete(int id);
 	}
 }

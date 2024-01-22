@@ -4,14 +4,10 @@ using Data.Repositorios.Interfaces;
 
 namespace Data.Repositorios
 {
-	public class RepositorioPartidosMasculinos : IRepositorioPartidosMasculinos
+	public class RepositorioPartidosMasculinos(ApplicationDbContext context) : IRepositorioPartidosMasculinos
 	{
-		private readonly ApplicationDbContext _context;
-
-		public RepositorioPartidosMasculinos(ApplicationDbContext context)
-		{
-			_context = context;
-		}
+		private readonly ApplicationDbContext _context = context;
+	
 
 		public IEnumerable<IPartidoMasculino> GetAll()
 		{
@@ -28,14 +24,16 @@ namespace Data.Repositorios
 			return _context.PartidosMasculinos.FirstOrDefault(j => j.Id == id);
 		}
 
-		public void Add(IPartidoMasculino entity)
+		public IPartidoMasculino? Add(IPartidoMasculino entity)
 		{
 			var domainEntity = (PartidoMasculino)entity;
-			_context.PartidosMasculinos.Add(domainEntity);
+			var newPartido = _context.PartidosMasculinos.Add(domainEntity);
 			_context.SaveChanges();
+			return newPartido.Entity;
+
 		}
 
-		public void Update(IPartidoMasculino entity)
+		public IPartidoMasculino? Update(IPartidoMasculino entity)
 		{
 
 			var domainEntity = (PartidoMasculino)entity;
@@ -45,6 +43,7 @@ namespace Data.Repositorios
 				_context.Entry(itemToUpdate).CurrentValues.SetValues(domainEntity);
 
 			_context.SaveChanges();
+			return itemToUpdate;
 		}
 
 		public void Delete(int id)

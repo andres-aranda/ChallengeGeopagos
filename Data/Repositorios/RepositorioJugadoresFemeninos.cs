@@ -4,18 +4,16 @@ using Data.Repositorios.Interfaces;
 
 namespace Data.Repositorios
 {
-	public class RepositorioJugadoresFemeninos : IRepositorioJugadoresFemeninos
+	public class RepositorioJugadoresFemeninos(ApplicationDbContext context) : IRepositorioJugadoresFemeninos
 	{
-		private readonly ApplicationDbContext _context;
+		private readonly ApplicationDbContext _context = context;
 
-		public RepositorioJugadoresFemeninos(ApplicationDbContext context)
-		{
-			_context = context;
-		}
+
 
 		public IEnumerable<IJugadorFemenino> GetAll()
 		{
-			return _context.JugadoresFemeninos.ToList();
+			var jugadoras = _context.JugadoresFemeninos.ToList();
+			return jugadoras;
 		}
 
 		public IEnumerable<IJugadorFemenino> GetFromQuery(System.Linq.Expressions.Expression<Func<IJugadorFemenino, bool>> query)
@@ -28,14 +26,16 @@ namespace Data.Repositorios
 			return _context.JugadoresFemeninos.FirstOrDefault(j => j.Id == id);
 		}
 
-		public void Add(IJugadorFemenino entity)
+		public IJugadorFemenino Add(IJugadorFemenino entity)
 		{
 			var domainEntity = (JugadorFemenino)entity;
-			_context.JugadoresFemeninos.Add(domainEntity);
+			var newJugador =_context.JugadoresFemeninos.Add(domainEntity);
 			_context.SaveChanges();
+			return newJugador.Entity;
+
 		}
 
-		public void Update(IJugadorFemenino entity)
+		public IJugadorFemenino? Update(IJugadorFemenino entity)
 		{
 
 			var domainEntity = (JugadorFemenino)entity;
@@ -45,6 +45,8 @@ namespace Data.Repositorios
 				_context.Entry(itemToUpdate).CurrentValues.SetValues(domainEntity);
 
 			_context.SaveChanges();
+
+			return itemToUpdate;
 		}
 
 		public void Delete(int id)

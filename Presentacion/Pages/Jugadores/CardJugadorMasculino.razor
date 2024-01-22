@@ -1,0 +1,53 @@
+@if (mostrarComoLinea)
+{
+	<div class="lineaFlotante" style="background-color:@backcolor" @onclick=OnClickHandler>
+		<RadzenStack Style="height: 60px; width: 897px" JustifyContent="Radzen.JustifyContent.Center" AlignItems="Radzen.AlignItems.Center" Orientation="Radzen.Orientation.Horizontal" Wrap="Radzen.FlexWrap.NoWrap">
+			<RadzenIcon Icon="perm_identity" Style="font-size: 25px; margin-left: 15px" IconStyle="Radzen.IconStyle.Info"></RadzenIcon>
+			<RadzenText Text="@jugadorMasculino.Nombre" Style="width: 227px; text-align: center; font-weight: bold " />
+			<RadzenArcGauge Style="width: 72px; height: 34px; ">
+				<RadzenArcGaugeScale Step="1" Fill="" FormatString="Habilidad" Margin="2" Height="0.1">
+					<RadzenArcGaugeScaleValue Value="@jugadorMasculino.NivelHabilidad" ShowValue="true" />
+				</RadzenArcGaugeScale>
+			</RadzenArcGauge>
+			<RadzenText Text="Nivel de Habilidad" Style="width: 77px; text-align: center; font-size: 12px; height: 34px" />
+			<RadzenStack Style="width: 206px" Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.Start" AlignItems="Radzen.AlignItems.Center">
+				<RadzenText Text="Fuerza" Style="width: 56px; font-size: 13px; height: 16px; font-weight: bold" />
+				<RadzenProgressBar Unit="%" Value="@jugadorMasculino.Fuerza" Visible="true" Style="width: 115px; border-radius: 30px" ShowValue="false" ProgressBarStyle="Radzen.ProgressBarStyle.Danger"></RadzenProgressBar>
+				<RadzenIcon Icon="fitness_center" IconStyle="Radzen.IconStyle.Danger"></RadzenIcon>
+			</RadzenStack>
+			<RadzenStack Style="width: 228px" Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.Start" AlignItems="Radzen.AlignItems.Center">
+				<RadzenText Text="Velocidad" Style="width: 60px; font-size: 13px; height: 17px; font-weight: bold" />
+				<RadzenProgressBar Unit="%" Value="@jugadorMasculino.Velocidad" Visible="true" Style="width: 100px" ShowValue="false" ProgressBarStyle="Radzen.ProgressBarStyle.Info"></RadzenProgressBar>
+				<RadzenIcon Icon="fast_forward" IconStyle="Radzen.IconStyle.Info"></RadzenIcon>
+			</RadzenStack>
+		</RadzenStack>
+	</div>
+}
+else
+{
+	<div class="cardFlotante" style="background-color:@backcolor" @onclick=OnClickHandler>
+		<RadzenStack Style="height: 300px" JustifyContent="Radzen.JustifyContent.Center" AlignItems="Radzen.AlignItems.Center">
+			<RadzenIcon Icon="perm_identity" Style="font-size: 80px" IconStyle="Radzen.IconStyle.Info"></RadzenIcon>
+			<RadzenText Text="@jugadorMasculino.Nombre" Style="width: 227px; margin-bottom: -5px; margin-top: -25px; text-align: center; font-weight: bold " />
+			<RadzenArcGauge Style="width: 257px; height: 63px; padding-bottom: -10px">
+				<RadzenArcGaugeScale Step="1" Fill="" FormatString="Habilidad" Margin="2" Height="0.1">
+					<RadzenArcGaugeScaleValue Value="@jugadorMasculino.NivelHabilidad" ShowValue="true" />
+				</RadzenArcGaugeScale>
+			</RadzenArcGauge>
+			<RadzenText Text="Nivel de Habilidad" Style="width: 223px; text-align: center; margin-top: -35px; margin-bottom: -10px; font-size: 12px" />
+			<RadzenStack Style="width: 206px" Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.Start" AlignItems="Radzen.AlignItems.Center">
+				<RadzenText Text="Fuerza" Style="width: 56px; font-size: 13px; height: 16px; font-weight: bold" />
+				<RadzenProgressBar Unit="%" Value="@jugadorMasculino.Fuerza" Visible="true" Style="width: 115px; border-radius: 30px" ShowValue="false" ProgressBarStyle="Radzen.ProgressBarStyle.Danger"></RadzenProgressBar>
+				<RadzenIcon Icon="fitness_center" IconStyle="Radzen.IconStyle.Danger"></RadzenIcon>
+			</RadzenStack>
+			<RadzenStack Style="width: 228px" Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.Start" AlignItems="Radzen.AlignItems.Center">
+				<RadzenText Text="Velocidad" Style="width: 60px; font-size: 13px; height: 17px; font-weight: bold" />
+				<RadzenProgressBar Unit="%" Value="@jugadorMasculino.Velocidad" Visible="true" Style="width: 100px" ShowValue="false" ProgressBarStyle="Radzen.ProgressBarStyle.Info"></RadzenProgressBar>
+				<RadzenIcon Icon="fast_forward" IconStyle="Radzen.IconStyle.Info"></RadzenIcon>
+			</RadzenStack>
+		</RadzenStack>
+
+
+	</div>
+}
+

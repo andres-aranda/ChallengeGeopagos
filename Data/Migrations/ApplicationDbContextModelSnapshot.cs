@@ -42,7 +42,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("JugadoresFemeninos");
+                    b.ToTable("JugadoresFemeninos", (string)null);
                 });
 
             modelBuilder.Entity("Data.Dominio.JugadorMasculino", b =>
@@ -68,7 +68,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("JugadoresMasculinos");
+                    b.ToTable("JugadoresMasculinos", (string)null);
                 });
 
             modelBuilder.Entity("Data.Dominio.PartidoFemenino", b =>
@@ -79,6 +79,9 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("IPartidoSiguiente")
+                        .HasColumnType("int");
+
                     b.Property<int?>("IdGanador")
                         .HasColumnType("int");
 
@@ -93,6 +96,8 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("IPartidoSiguiente");
+
                     b.HasIndex("IdGanador");
 
                     b.HasIndex("IdJugador1");
@@ -101,7 +106,7 @@ namespace Data.Migrations
 
                     b.HasIndex("IdTorneo");
 
-                    b.ToTable("PartidosFemeninos");
+                    b.ToTable("PartidosFemeninos", (string)null);
                 });
 
             modelBuilder.Entity("Data.Dominio.PartidoMasculino", b =>
@@ -112,6 +117,9 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("IPartidoSiguiente")
+                        .HasColumnType("int");
+
                     b.Property<int?>("IdGanador")
                         .HasColumnType("int");
 
@@ -126,6 +134,8 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("IPartidoSiguiente");
+
                     b.HasIndex("IdGanador");
 
                     b.HasIndex("IdJugador1");
@@ -134,7 +144,7 @@ namespace Data.Migrations
 
                     b.HasIndex("IdTorneo");
 
-                    b.ToTable("PartidosMasculinos");
+                    b.ToTable("PartidosMasculinos", (string)null);
                 });
 
             modelBuilder.Entity("Data.Dominio.Torneo", b =>
@@ -150,11 +160,15 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Torneo");
+                    b.ToTable("Torneos", (string)null);
                 });
 
             modelBuilder.Entity("Data.Dominio.PartidoFemenino", b =>
                 {
+                    b.HasOne("Data.Dominio.PartidoFemenino", "PartidoSiguiente")
+                        .WithMany()
+                        .HasForeignKey("IPartidoSiguiente");
+
                     b.HasOne("Data.Dominio.JugadorFemenino", "Ganador")
                         .WithMany()
                         .HasForeignKey("IdGanador");
@@ -181,11 +195,17 @@ namespace Data.Migrations
 
                     b.Navigation("Jugador2");
 
+                    b.Navigation("PartidoSiguiente");
+
                     b.Navigation("Torneo");
                 });
 
             modelBuilder.Entity("Data.Dominio.PartidoMasculino", b =>
                 {
+                    b.HasOne("Data.Dominio.PartidoMasculino", "PartidoSiguiente")
+                        .WithMany()
+                        .HasForeignKey("IPartidoSiguiente");
+
                     b.HasOne("Data.Dominio.JugadorMasculino", "Ganador")
                         .WithMany()
                         .HasForeignKey("IdGanador");
@@ -211,6 +231,8 @@ namespace Data.Migrations
                     b.Navigation("Jugador1");
 
                     b.Navigation("Jugador2");
+
+                    b.Navigation("PartidoSiguiente");
 
                     b.Navigation("Torneo");
                 });

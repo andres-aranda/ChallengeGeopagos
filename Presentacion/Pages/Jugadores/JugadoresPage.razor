@@ -1,0 +1,46 @@
+@page "/Jugadores"
+@layout MainLayout
+
+<PageTitle>Page Title</PageTitle>
+<RadzenStack Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.Start" AlignItems="Radzen.AlignItems.Center">
+
+<p class="h2 m-3">Jugadores Femeninos</p>            
+<RadzenButton Icon="add_circle_outline" Style="width: 36px; height: 36px; vertical-align: middle; bottom: 0px; right: 0px" Click="@AddFemenino"></RadzenButton>
+</RadzenStack>
+
+@if (cargando)
+{
+	<RadzenStack JustifyContent="Radzen.JustifyContent.Center" Style="height: 109px">
+		<RadzenText Text="Cargando..." Style="text-align: center; margin-bottom: -60px"></RadzenText>
+		<div class="rz-m-12">
+			<RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+		</div>
+	</RadzenStack>
+}
+<div class="d-flex flex-wrap">
+	@foreach (var jugador in jugadoresFemenino)
+	{
+		<CardJugadorFemenino jugadorFemenino="@jugador"></CardJugadorFemenino>
+	}
+</div>
+<RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="Radzen.AlignItems.Center">
+
+<p class="h2 m-3">Jugadores Masculinos</p>
+<RadzenButton Icon="add_circle_outline" Style="width: 36px; height: 36px; vertical-align: middle; right: 0px; bottom: 0px" Click="@AddMasculino"></RadzenButton>
+</RadzenStack>
+
+@if (cargando)
+{
+	<RadzenStack JustifyContent="Radzen.JustifyContent.Center" Style="height: 109px">
+		<RadzenText Text="Cargando..." Style="text-align: center; margin-bottom: -60px"></RadzenText>
+		<div class="rz-m-12">
+			<RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+		</div>
+	</RadzenStack>
+}
+<div class="d-flex flex-wrap">
+	@foreach (var jugador in jugadoresMasculino)
+	{
+		<CardJugadorMasculino OnClick="@CardMasculinoClickbool" jugadorMasculino="@jugador"></CardJugadorMasculino>
+	}
+</div>

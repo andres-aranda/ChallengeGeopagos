@@ -1,12 +1,13 @@
 ﻿using Data.Dominio.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.InteropServices;
 
 namespace Data.Dominio
 {
 	public class PartidoMasculino : IPartidoMasculino
 	{
-		[Key]
+		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
 		[ForeignKey("Jugador1")]
 		public int IdJugador1 { get; set; }
@@ -16,9 +17,12 @@ namespace Data.Dominio
 		public int? IdGanador { get; set; }
 		[ForeignKey("Torneo")]
 		public int? IdTorneo { get; set; }
-		public virtual Torneo Torneo { get; set; }
-		public virtual JugadorMasculino Jugador1 { get; set; }
-		public virtual JugadorMasculino Jugador2 { get; set; }
-		public virtual JugadorMasculino Ganador { get; set; }
+		[ForeignKey("PartidoSiguiente")]
+		public int? IPartidoSiguiente { get; set; }
+		public virtual Torneo? Torneo { get; set; }
+		public virtual JugadorMasculino? Jugador1 { get; set; }
+		public virtual JugadorMasculino? Jugador2 { get; set; }
+		public virtual JugadorMasculino? Ganador { get; set; }
+		public virtual PartidoMasculino? PartidoSiguiente { get; set; }
 	}
 }

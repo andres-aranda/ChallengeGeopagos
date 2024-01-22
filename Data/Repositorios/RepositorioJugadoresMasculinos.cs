@@ -15,7 +15,8 @@ namespace Data.Repositorios
 
 		public IEnumerable<IJugadorMasculino> GetAll()
 		{
-			return _context.JugadoresMasculinos.ToList();
+			var x = _context.JugadoresMasculinos.ToList();
+			return x;
 		}
 
 		public IEnumerable<IJugadorMasculino> GetFromQuery(System.Linq.Expressions.Expression<Func<IJugadorMasculino, bool>> query)
@@ -28,14 +29,16 @@ namespace Data.Repositorios
 			return _context.JugadoresMasculinos.FirstOrDefault(j => j.Id == id);
 		}
 
-		public void Add(IJugadorMasculino entity)
+		public IJugadorMasculino? Add(IJugadorMasculino entity)
 		{
-			var domainEntity = (JugadorMasculino)entity;
-			_context.JugadoresMasculinos.Add(domainEntity);
+			var domainEntity = (JugadorMasculino)entity;	
+			_context.JugadoresMasculinos.Add(domainEntity); 
 			_context.SaveChanges();
+			return domainEntity;
+
 		}
 
-		public void Update(IJugadorMasculino entity)
+		public IJugadorMasculino? Update(IJugadorMasculino entity)
 		{
 
 			var domainEntity = (JugadorMasculino)entity;
@@ -45,6 +48,8 @@ namespace Data.Repositorios
 				_context.Entry(itemToUpdate).CurrentValues.SetValues(domainEntity);
 
 			_context.SaveChanges();
+
+			return itemToUpdate;
 		}
 
 		public void Delete(int id)

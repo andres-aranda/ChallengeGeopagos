@@ -1,0 +1,67 @@
+@using Dtos
+@page "/addjugadormasculino"
+<PageTitle>Agregar Jugador</PageTitle>
+<RadzenColumn SizeMD=12>
+	<RadzenTemplateForm TItem="JugadorFemeninoDto" Data="@jugadorFemenino" Visible="@(jugadorFemenino != null)" Submit="@FormSubmit">
+		<RadzenRow style="margin-bottom: 1rem">
+			<RadzenColumn SizeMD="3">
+				<RadzenLabel Text="Nombre" Component="Nombre" style="width: 100%" />
+			</RadzenColumn>
+			<RadzenColumn SizeMD="9">
+				<RadzenTextBox style="display: block; width: 100%" @bind-Value="@jugadorFemenino.Nombre" Name="Nombre" />
+				<RadzenRequiredValidator Component="Nombre" Text="El nombre es requerido" />
+			</RadzenColumn>
+		</RadzenRow>
+		<RadzenRow style="margin-bottom: 1rem">
+			<RadzenColumn SizeMD="3">
+				<RadzenLabel Text="Nivel de Habilidad" style="width: 100%" />
+			</RadzenColumn>
+			<RadzenColumn SizeMD="6">
+				<RadzenSlider Min="0" Max="100" @bind-Value=@jugadorFemenino.NivelHabilidad TValue="int" Style="margin-right: 15px" />@jugadorFemenino.NivelHabilidad
+			</RadzenColumn>
+			<RadzenColumn SizeMD="3">
+				<RadzenText>0</RadzenText>
+			</RadzenColumn>
+		</RadzenRow>
+		<RadzenRow style="margin-bottom: 1rem">
+			<RadzenColumn SizeMD="3">
+				<RadzenStack Orientation="Radzen.Orientation.Horizontal">
+					<RadzenLabel Text="Fuerza" />
+					<RadzenIcon Icon="fitness_center" IconStyle="Radzen.IconStyle.Danger"></RadzenIcon>
+				</RadzenStack>
+
+			</RadzenColumn>
+			<RadzenColumn SizeMD="6">
+				<RadzenSlider Min="0" Max="100" @bind-Value=@jugadorFemenino.TiempoDeReaccion TValue="int" Step="20" Style="margin-right: 15px" />
+			</RadzenColumn>
+			<RadzenColumn SizeMD="3">
+				@switch (jugadorFemenino.TiempoDeReaccion)
+                {
+                    case 0:
+                        <RadzenText>Extremadamente Lento</RadzenText>
+                        break;
+                    case 20:
+                        <RadzenText>Muy Lento</RadzenText>
+                        break;
+                    case 40:
+                        <RadzenText>Lento</RadzenText>
+                        break;
+                    case 60:
+                        <RadzenText>Promedio</RadzenText>
+                        break;
+                    case 80:
+                        <RadzenText>Rapido</RadzenText>
+                        break;
+                    case 100:
+                        <RadzenText>Muy Rapido</RadzenText>
+                        break;
+                }
+			</RadzenColumn>
+		</RadzenRow>
+
+		<RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+			<RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Guardar" Variant="Variant.Flat" />
+			<RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick" />
+		</RadzenStack>
+	</RadzenTemplateForm>
+</RadzenColumn>
