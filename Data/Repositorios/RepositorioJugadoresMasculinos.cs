@@ -31,8 +31,8 @@ namespace Data.Repositorios
 
 		public IJugadorMasculino? Add(IJugadorMasculino entity)
 		{
-			var domainEntity = (JugadorMasculino)entity;	
-			_context.JugadoresMasculinos.Add(domainEntity); 
+			var domainEntity = (JugadorMasculino)entity;
+			_context.JugadoresMasculinos.Add(domainEntity);
 			_context.SaveChanges();
 			return domainEntity;
 
@@ -52,12 +52,12 @@ namespace Data.Repositorios
 			return itemToUpdate;
 		}
 
-		public void Delete(int id)
+		public bool Delete(int id)
 		{
 			var itemToRemove = _context.JugadoresMasculinos.FirstOrDefault(j => j.Id == id);
 			if (itemToRemove != null)
 				_context.JugadoresMasculinos.Remove(itemToRemove);
-			_context.SaveChanges();
+			return _context.SaveChanges() > 0;
 		}
 		public void AddRange(IEnumerable<IJugadorMasculino> entities)
 		{

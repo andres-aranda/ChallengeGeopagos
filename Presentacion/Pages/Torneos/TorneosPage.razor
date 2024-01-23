@@ -11,30 +11,43 @@
 </RadzenStack>
 @if (cargando)
 {
-    <RadzenStack JustifyContent="Radzen.JustifyContent.Center" Style="height: 109px">
-        <RadzenText Text="Cargando..." Style="text-align: center; margin-bottom: -60px"></RadzenText>
-        <div class="rz-m-12">
-            <RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
-        </div>
-    </RadzenStack>
+	<RadzenStack JustifyContent="Radzen.JustifyContent.Center" Style="height: 109px">
+		<RadzenText Text="Cargando..." Style="text-align: center; margin-bottom: -60px"></RadzenText>
+		<div class="rz-m-12">
+			<RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+		</div>
+	</RadzenStack>
 }
 <RadzenStack>
-    <RadzenRow>
-        <RadzenColumn SizeMD=12>
-            <RadzenDataGrid  ColumnWidth="200px" AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
-                            Data="@Torneos" TItem="TorneoDto" >
-                <Columns>
-                    <RadzenDataGridColumn TItem="TorneoDto" Property="Id" Title="Id">
-                    </RadzenDataGridColumn>
-                    <RadzenDataGridColumn TItem="TorneoDto" Property="FechaFinalizacion" Title="Fecha Finalizacion">
-                    </RadzenDataGridColumn>
-                    <RadzenDataGridColumn TItem="TorneoDto" Property="Ganador" Title="Ganador">
-                    </RadzenDataGridColumn>
+	<RadzenRow>
+		<RadzenColumn SizeMD=12>
+			<RadzenDataGrid ColumnWidth="100px" AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+							Data="@Torneos" TItem="TorneoDto" >
+				<Columns>
+					<RadzenDataGridColumn TItem="TorneoDto" Property="Id" Title="Id" Width="50px">
+					</RadzenDataGridColumn>
+					<RadzenDataGridColumn TItem="TorneoDto"  Property="FechaFinalizacion" Title="Fecha Finalizacion">
+					</RadzenDataGridColumn>
+					<RadzenDataGridColumn TItem="TorneoDto" Property="Ganador" Title="Ganador">
+					</RadzenDataGridColumn>
+					<RadzenDataGridColumn TItem="TorneoDto" Filterable="false" TextAlign="TextAlign.Center" Width="100px">
+						<Template Context="torneo">
+							@if (torneo.FechaFinalizacion == null)
+							{
+							<RadzenButton ButtonStyle="ButtonStyle.Secondary" Text="Finalizar" Size="ButtonSize.Small" Click="@((args) => FinalizarTorneo(torneo.Id))" />
+							}
+						</Template>
+					</RadzenDataGridColumn>
+					<RadzenDataGridColumn TItem="TorneoDto" Filterable="false"  TextAlign="TextAlign.Center" Width="100px">
+						<Template Context="torneo">
+							<RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Small" Click="@((args) => BorrarTorneo(torneo.Id))" />
+						</Template>
+					</RadzenDataGridColumn>
 
 				</Columns>
 
-            </RadzenDataGrid>
+			</RadzenDataGrid>
 
-        </RadzenColumn>
-    </RadzenRow>
+		</RadzenColumn>
+	</RadzenRow>
 </RadzenStack>

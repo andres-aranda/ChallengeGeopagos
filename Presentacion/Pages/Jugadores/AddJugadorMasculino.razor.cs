@@ -45,6 +45,10 @@ namespace Presentacion.Pages.Jugadores
 			DialogService.Close(null);
 		}
 		#endregion
-
+		void OnChange(string value)
+		{
+			if (value.Length == 1)
+				jugadorMasculino.Nombre.Trim();
+		}
 	}
 }

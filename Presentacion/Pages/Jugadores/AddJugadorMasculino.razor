@@ -7,7 +7,7 @@
 				<RadzenLabel Text="Nombre" Component="Nombre" style="width: 100%" />
 			</RadzenColumn>
 			<RadzenColumn SizeMD="9">
-				<RadzenTextBox style="display: block; width: 100%" @bind-Value="@jugadorMasculino.Nombre" Name="Nombre" />
+				<RadzenTextBox Change=@OnChange style="display: block; width: 100%" @bind-Value="@jugadorMasculino.Nombre" Name="Nombre" />
 				<RadzenRequiredValidator Component="Nombre" Text="El nombre es requerido" />
 			</RadzenColumn>
 		</RadzenRow>
@@ -31,7 +31,7 @@
 
 			</RadzenColumn>
 			<RadzenColumn SizeMD="6">
-				<RadzenSlider Min="0" Max="100" @bind-Value=@jugadorMasculino.Fuerza TValue="int" Step="20" Style="margin-right: 15px" />@jugadorMasculino.Fuerza
+				<RadzenSlider Min="0" Max="100" @bind-Value=@jugadorMasculino.Fuerza TValue="int" Step="20" Style="margin-right: 15px" />
 			</RadzenColumn>
 			<RadzenColumn SizeMD="3">
 				@switch (jugadorMasculino.Fuerza)
@@ -65,7 +65,7 @@
 				</RadzenStack>
 			</RadzenColumn>
 			<RadzenColumn SizeMD="6">
-				<RadzenSlider Min="0" Max="100" @bind-Value=@jugadorMasculino.Velocidad TValue="int" Step="20" Style="margin-right: 15px" />@jugadorMasculino.Velocidad
+				<RadzenSlider Min="0" Max="100" @bind-Value=@jugadorMasculino.Velocidad TValue="int" Step="20" Style="margin-right: 15px" />
 			</RadzenColumn>
 			<RadzenColumn SizeMD="3">
 				@switch (jugadorMasculino.Velocidad)

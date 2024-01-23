@@ -10,6 +10,6 @@ namespace Data.Repositorios.Interfaces
 		T? Add(T entity);
 		void AddRange(IEnumerable<T> entities);
 		T? Update(T entity);
-		void Delete(int id);
+		bool Delete(int id);
 	}
 }

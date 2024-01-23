@@ -27,27 +27,32 @@ namespace Business.Services
 		}
 		public ITorneoDto? CrearTorneo(List<IJugadorDto> Jugadores)
 		{
-			var torneoDto = new TorneoDto();
-
-			var partidos = ServicePartidos.CrearPartidos(Jugadores);
-
-			if (partidos == null)
-				return null;
-
-			partidos.ForEach(partido =>
+			if (Jugadores.Count % 2 == 0
+				&& (Jugadores.Count / 2) % 2 == 0)
 			{
-				if (partido is PartidoMasculinoDto partidoMasculinoDto)
-					torneoDto.PartidosMasculinos.Add(partidoMasculinoDto);
-				else if (partido is PartidoFemeninoDto partidoFemeninoDto)
-					torneoDto.PartidosFemeninos.Add(partidoFemeninoDto);
-			});
+				var torneoDto = new TorneoDto();
 
-			var torneo = Mapper.Map<TorneoDto, Torneo>(torneoDto);
-			RepositorioTorneos.Add(torneo);
-			return Mapper.Map<Torneo, TorneoDto>(torneo);
+				var partidos = ServicePartidos.CrearPartidos(Jugadores);
+
+				if (partidos == null)
+					return null;
+
+				partidos.ForEach(partido =>
+				{
+					if (partido is PartidoMasculinoDto partidoMasculinoDto)
+						torneoDto.PartidosMasculinos.Add(partidoMasculinoDto);
+					else if (partido is PartidoFemeninoDto partidoFemeninoDto)
+						torneoDto.PartidosFemeninos.Add(partidoFemeninoDto);
+				});
+
+				var torneo = Mapper.Map<TorneoDto, Torneo>(torneoDto);
+				RepositorioTorneos.Add(torneo);
+				return Mapper.Map<Torneo, TorneoDto>(torneo);
+			}
+			return null;
 
 		}
-		
+
 		public ITorneoDto? FinalizarTorneo(int id)
 		{
 			var torneo = RepositorioTorneos.GetById(id);
@@ -79,6 +84,9 @@ namespace Business.Services
 				}
 			}
 			RepositorioTorneos.FinalizarTorneo(torneoDto.Id);
+			torneo = RepositorioTorneos.GetById(id);
+			torneoDto = Mapper.Map<Torneo, TorneoDto>(torneo as Torneo);
+
 
 			return torneoDto;
 		}
@@ -97,6 +105,11 @@ namespace Business.Services
 
 			var torneos = Mapper.Map<List<TorneoDto>>(torneosDominio);
 			return torneos;
+		}
+		public bool BorrarTorneo(int id)
+		{
+			RepositorioTorneos.Delete(id);
+			return true;
 		}
 
 		private Expression<Func<T, bool>> AddFilter<T>(

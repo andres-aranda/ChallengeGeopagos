@@ -125,7 +125,8 @@ namespace Presentacion.Pages.Torneos
 		{
 			if (torneoMasculino)
 			{
-				if (jugadoresMasculinosSeleccionados.Count % 2 == 0
+				if (jugadoresMasculinosSeleccionados.Count>0 &&
+					jugadoresMasculinosSeleccionados.Count % 2 == 0
 					&& (jugadoresMasculinosSeleccionados.Count / 2) % 2 == 0)
 				{
 					ErrorTupla = false;
@@ -139,7 +140,8 @@ namespace Presentacion.Pages.Torneos
 			}
 			else
 			{
-				if (jugadoresFemeninosSeleccionados.Count % 2 == 0
+				if (jugadoresFemeninosSeleccionados.Count > 0 
+					&& jugadoresFemeninosSeleccionados.Count % 2 == 0
 					&& (jugadoresFemeninosSeleccionados.Count / 2) % 2 == 0)
 				{
 					ErrorTupla = false;

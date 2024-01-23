@@ -11,6 +11,7 @@ namespace Data.Repositorios
 
 
 
+
 		public IEnumerable<ITorneo> GetAll()
 		{
 			return _context.Torneos
@@ -75,12 +76,16 @@ namespace Data.Repositorios
 			return itemToUpdate;
 		}
 
-		public void Delete(int id)
+		public bool Delete(int id)
 		{
+			var partidosMasculinos = _context.PartidosMasculinos.Where(p => p.IdTorneo == id);
+			var partidosFemeninos = _context.PartidosFemeninos.Where(p => p.IdTorneo == id);
+			_context.PartidosMasculinos.RemoveRange(partidosMasculinos);
+			_context.PartidosFemeninos.RemoveRange(partidosFemeninos);
 			var itemToRemove = _context.Torneos.FirstOrDefault(j => j.Id == id);
 			if (itemToRemove != null)
 				_context.Torneos.Remove(itemToRemove);
-			_context.SaveChanges();
+            return _context.SaveChanges() > 0;
 		}
 		public void AddRange(IEnumerable<ITorneo> entities)
 		{

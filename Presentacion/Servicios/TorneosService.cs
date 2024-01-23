@@ -27,24 +27,24 @@ namespace Presentacion.Servicios
 
         public async Task<bool> CrearTorneoMasculino(IEnumerable<JugadorMasculinoDto> jugadores)
         {
-            var result = await _httpClient.PostAsJsonAsync($"{_urlApi}api/Torneos/CrearTorneoMasculino", jugadores);
+            var result = await _httpClient.PostAsJsonAsync($"{_urlApi}api/Torneos/CrearTorneoMasculino", jugadores, options);
             return result?.StatusCode == HttpStatusCode.OK;
         }
 
         public async Task<bool> CrearTorneoFemenino(IEnumerable<JugadorFemeninoDto> jugadores)
         {
 
-            var result = await _httpClient.PostAsJsonAsync($"{_urlApi}api/Torneos/CrearTorneoFemenino", jugadores);
+            var result = await _httpClient.PostAsJsonAsync($"{_urlApi}api/Torneos/CrearTorneoFemenino", jugadores, options);
             return result?.StatusCode == HttpStatusCode.OK;
         }
 
         public async Task<TorneoDto?> CrearTorneoFemeninoYFinalizar(IEnumerable<JugadorFemeninoDto> jugadores)
         {
 
-            var result = await _httpClient.PostAsJsonAsync($"{_urlApi}api/Torneos/CrearTorneoYFinalizarFemenino", jugadores);
-            if (result?.StatusCode == HttpStatusCode.Created)
+            var result = await _httpClient.PostAsJsonAsync($"{_urlApi}api/Torneos/CrearTorneoYFinalizarFemenino", jugadores, options);
+            if (result?.StatusCode == HttpStatusCode.OK)
             {
-                var torneo = await result.Content.ReadFromJsonAsync<TorneoDto>();
+                var torneo = await result.Content.ReadFromJsonAsync<TorneoDto>(options);
                 return torneo;
             }
             return null;
@@ -52,10 +52,10 @@ namespace Presentacion.Servicios
 
         public async Task<TorneoDto?> CrearTorneoMasculinoYFinalizar(IEnumerable<JugadorMasculinoDto> jugadores)
         {
-            var result = await _httpClient.PostAsJsonAsync($"{_urlApi}api/Torneos/CrearTorneoYFinalizarMasculino", jugadores);
-            if (result?.StatusCode == HttpStatusCode.Created)
+            var result = await _httpClient.PostAsJsonAsync($"{_urlApi}api/Torneos/CrearTorneoYFinalizarMasculino", jugadores, options);
+            if (result?.StatusCode == HttpStatusCode.OK)
             {
-                var torneo = await result.Content.ReadFromJsonAsync<TorneoDto>();
+                var torneo = await result.Content.ReadFromJsonAsync<TorneoDto>(options);
                 return torneo;
             }   
             return null;
@@ -70,12 +70,8 @@ namespace Presentacion.Servicios
 
         public async Task<bool> BorrarTorneo(int id)
         {
-            var response = await _httpClient.DeleteAsync($"{_urlApi}api/Torneos/BorrarTorneo/{id}");
-            if (response.IsSuccessStatusCode)
-            {
-                return true;
-            }
-            return false;
+            var response = await _httpClient.DeleteAsync($"{_urlApi}api/Torneos/{id}");
+           return response.StatusCode == HttpStatusCode.NoContent;
         }
 
         public async Task<IEnumerable<TorneoDto>> ObtenerTodos()

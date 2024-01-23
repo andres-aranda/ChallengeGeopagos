@@ -7,7 +7,7 @@ namespace Data.Repositorios
 	public class RepositorioPartidosMasculinos(ApplicationDbContext context) : IRepositorioPartidosMasculinos
 	{
 		private readonly ApplicationDbContext _context = context;
-	
+
 
 		public IEnumerable<IPartidoMasculino> GetAll()
 		{
@@ -46,12 +46,12 @@ namespace Data.Repositorios
 			return itemToUpdate;
 		}
 
-		public void Delete(int id)
+		public bool Delete(int id)
 		{
 			var itemToRemove = _context.PartidosMasculinos.FirstOrDefault(j => j.Id == id);
 			if (itemToRemove != null)
 				_context.PartidosMasculinos.Remove(itemToRemove);
-			_context.SaveChanges();
+			return _context.SaveChanges() > 0;
 		}
 		public void AddRange(IEnumerable<IPartidoMasculino> entities)
 		{

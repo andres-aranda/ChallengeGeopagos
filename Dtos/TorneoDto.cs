@@ -11,8 +11,8 @@ namespace Dtos
 
 		public string? Ganador { get; set; }
 
-		public virtual List<PartidoMasculinoDto> PartidosMasculinos { get; set; } = [];
+		public virtual List<PartidoMasculinoDto>? PartidosMasculinos { get; set; } = new List<PartidoMasculinoDto>();
 
-		public virtual List<PartidoFemeninoDto> PartidosFemeninos { get; set; } = [];
+		public virtual List<PartidoFemeninoDto>? PartidosFemeninos { get; set; } = new List<PartidoFemeninoDto>();
 	}
 }

@@ -28,11 +28,12 @@ builder.Services.AddCors(p => p.AddPolicy("PolicyCors", build =>
 var app = builder.Build();
 app.UseCors("PolicyCors");
 
+app.UseSwagger();
+app.UseSwaggerUI();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-	app.UseSwagger();
-	app.UseSwaggerUI();
 	app.UseDeveloperExceptionPage();
 }
 
