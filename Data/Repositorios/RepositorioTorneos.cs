@@ -85,7 +85,7 @@ namespace Data.Repositorios
 			var itemToRemove = _context.Torneos.FirstOrDefault(j => j.Id == id);
 			if (itemToRemove != null)
 				_context.Torneos.Remove(itemToRemove);
-            return _context.SaveChanges() > 0;
+			return _context.SaveChanges() > 0;
 		}
 		public void AddRange(IEnumerable<ITorneo> entities)
 		{
@@ -101,7 +101,7 @@ namespace Data.Repositorios
 
 			if (itemToUpdate == null)
 				return null;
-			
+
 			_context.Entry(itemToUpdate);
 
 			itemToUpdate.FechaFinalizacion = DateTime.Today;

@@ -1,8 +1,5 @@
 ﻿using Dtos;
 using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Presentacion.Pages.Jugadores
 {
@@ -17,7 +14,7 @@ namespace Presentacion.Pages.Jugadores
 
 		public bool seleccionado { get; set; } = false;
 
-		private string backcolor { get; set; } 
+		private string backcolor { get; set; }
 
 		[Parameter]
 		public EventCallback<int> OnClick { get; set; }

@@ -24,7 +24,7 @@ namespace Data.Dominio
 				partidosConGanadores.AddRange(PartidosFemeninos.Where(p => p.IdGanador != null));
 
 
-				var idGanador = partidosConGanadores.Find(p=>p.IPartidoSiguiente==null)?.IdGanador;
+				var idGanador = partidosConGanadores.Find(p => p.IPartidoSiguiente == null)?.IdGanador;
 
 				if (idGanador == null)
 					return "Aun no hay ganador";

@@ -1,7 +1,4 @@
-﻿
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Dtos
 {
@@ -30,16 +27,16 @@ namespace Dtos
 			var probabilidadJugador1 = probabilidadBase + Jugador1.Suerte(Jugador2);
 
 			var resultado = random.Next(0, 100);
-			 if (resultado <= probabilidadJugador1)
+			if (resultado <= probabilidadJugador1)
 			{
-				 IdGanador = Jugador1.Id;
-				 Ganador = Jugador1;
-			 }
-			 else
+				IdGanador = Jugador1.Id;
+				Ganador = Jugador1;
+			}
+			else
 			{
 				IdGanador = Jugador2.Id;
-				 Ganador = Jugador2;
-			 }
+				Ganador = Jugador2;
+			}
 
 		}
 	}

@@ -1,17 +1,10 @@
 ﻿using AutoMapper;
-using Business.Services.Interfeces;
 using Business.Services;
+using Business.Services.Interfeces;
+using Data.Dominio;
 using Data.Repositorios.Interfaces;
 using Dtos;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Data.Dominio;
-using Data.Dominio.Interfaces;
-using System.Linq.Expressions;
 
 namespace TestGeoPagosApp
 {

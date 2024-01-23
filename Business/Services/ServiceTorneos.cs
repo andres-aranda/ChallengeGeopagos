@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Business.Services.Interfeces;
 using Data.Dominio;
 using Data.Dominio.Interfaces;
 using Data.Repositorios.Interfaces;
 using Dtos;
+using System.Linq.Expressions;
 
 namespace Business.Services
 {

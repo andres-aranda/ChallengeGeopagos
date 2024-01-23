@@ -1,5 +1,4 @@
 ﻿using Business.Services.Interfeces;
-using Data.Dominio;
 using Dtos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +17,7 @@ namespace ApiTorneo.Controllers
 			_serviceJugadores = serviceJugadores;
 		}
 
-		[HttpGet("Femeninos")]	
+		[HttpGet("Femeninos")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status403Forbidden)]
 		public IActionResult GetAllJugadoresFemeninos()

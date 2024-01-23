@@ -29,7 +29,7 @@ namespace Data.Repositorios
 		public IJugadorFemenino Add(IJugadorFemenino entity)
 		{
 			var domainEntity = (JugadorFemenino)entity;
-			var newJugador =_context.JugadoresFemeninos.Add(domainEntity);
+			var newJugador = _context.JugadoresFemeninos.Add(domainEntity);
 			_context.SaveChanges();
 			return newJugador.Entity;
 
@@ -54,7 +54,7 @@ namespace Data.Repositorios
 			var itemToRemove = _context.JugadoresFemeninos.FirstOrDefault(j => j.Id == id);
 			if (itemToRemove != null)
 				_context.JugadoresFemeninos.Remove(itemToRemove);
-			return _context.SaveChanges() >0;
+			return _context.SaveChanges() > 0;
 		}
 		public void AddRange(IEnumerable<IJugadorFemenino> entities)
 		{

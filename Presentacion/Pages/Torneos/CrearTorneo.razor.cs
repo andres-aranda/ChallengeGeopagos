@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.Components;
 using Presentacion.Servicios.Interfaces;
 using Radzen;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Presentacion.Pages.Torneos
 {
@@ -99,7 +96,7 @@ namespace Presentacion.Pages.Torneos
 			if (!ValidarTupla())
 				return;
 
-			 TorneoDto? result = null ;
+			TorneoDto? result = null;
 
 			if (torneoMasculino)
 			{
@@ -109,7 +106,7 @@ namespace Presentacion.Pages.Torneos
 			{
 				result = await TorneosService.CrearTorneoFemeninoYFinalizar(jugadoresFemeninosSeleccionados);
 			}
-			if (result!=null)
+			if (result != null)
 			{
 				await dialogService.Alert($"Torneo creado y finalizado correctamente El ganador fue {result.Ganador}");
 				NavigationManager.NavigateTo("/Torneos");
@@ -125,7 +122,7 @@ namespace Presentacion.Pages.Torneos
 		{
 			if (torneoMasculino)
 			{
-				if (jugadoresMasculinosSeleccionados.Count>0 &&
+				if (jugadoresMasculinosSeleccionados.Count > 0 &&
 					jugadoresMasculinosSeleccionados.Count % 2 == 0
 					&& (jugadoresMasculinosSeleccionados.Count / 2) % 2 == 0)
 				{
@@ -140,7 +137,7 @@ namespace Presentacion.Pages.Torneos
 			}
 			else
 			{
-				if (jugadoresFemeninosSeleccionados.Count > 0 
+				if (jugadoresFemeninosSeleccionados.Count > 0
 					&& jugadoresFemeninosSeleccionados.Count % 2 == 0
 					&& (jugadoresFemeninosSeleccionados.Count / 2) % 2 == 0)
 				{

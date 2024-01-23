@@ -2,10 +2,10 @@
 
 namespace Business.Services.Interfeces
 {
-    public interface IServiceJugadores
-    {
-        IJugadorDto? CrearJugador(IJugadorDto jugadorDto);
-        IEnumerable<JugadorFemeninoDto> GetAllJugadoresFemeninos();
-        IEnumerable<JugadorMasculinoDto> GetAllJugadoresMasculinos();
-    }
+	public interface IServiceJugadores
+	{
+		IJugadorDto? CrearJugador(IJugadorDto jugadorDto);
+		IEnumerable<JugadorFemeninoDto> GetAllJugadoresFemeninos();
+		IEnumerable<JugadorMasculinoDto> GetAllJugadoresMasculinos();
+	}
 }

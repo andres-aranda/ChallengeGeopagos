@@ -1,13 +1,8 @@
 ﻿using Dtos;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Microsoft.JSInterop;
-using Presentacion.Servicios;
 using Presentacion.Servicios.Interfaces;
 using Radzen;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Presentacion.Pages.Jugadores
 {
@@ -25,7 +20,7 @@ namespace Presentacion.Pages.Jugadores
 		#endregion
 
 		#region Propiedades
-		protected JugadorFemeninoDto jugadorFemenino { get; set; }=		new JugadorFemeninoDto();
+		protected JugadorFemeninoDto jugadorFemenino { get; set; } = new JugadorFemeninoDto();
 
 		#endregion
 

@@ -2,7 +2,7 @@
 
 namespace Dtos
 {
-	public class TorneoDto: ITorneoDto
+	public class TorneoDto : ITorneoDto
 	{
 		[Key]
 		public int Id { get; set; }

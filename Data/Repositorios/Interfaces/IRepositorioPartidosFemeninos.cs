@@ -2,7 +2,7 @@
 
 namespace Data.Repositorios.Interfaces
 {
-    public interface IRepositorioPartidosFemeninos: IRepositorio<IPartidoFemenino>
-    {
-    }
+	public interface IRepositorioPartidosFemeninos : IRepositorio<IPartidoFemenino>
+	{
+	}
 }

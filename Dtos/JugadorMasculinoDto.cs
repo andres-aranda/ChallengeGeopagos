@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dtos
-{ 
+{
 	public class JugadorMasculinoDto : IJugadorDto
 	{
 

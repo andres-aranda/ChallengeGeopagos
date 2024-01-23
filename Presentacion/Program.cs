@@ -10,8 +10,8 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 //services 
-builder.Services.AddScoped<IJugadoresService,JugadoresService>();
-builder.Services.AddScoped<ITorneosService,TorneosService>();
+builder.Services.AddScoped<IJugadoresService, JugadoresService>();
+builder.Services.AddScoped<ITorneosService, TorneosService>();
 
 //Radzen
 builder.Services.AddRadzenComponents();

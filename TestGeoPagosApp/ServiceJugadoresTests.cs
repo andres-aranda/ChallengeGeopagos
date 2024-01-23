@@ -4,11 +4,6 @@ using Data.Dominio;
 using Data.Repositorios.Interfaces;
 using Dtos;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestGeoPagosApp
 {
@@ -120,7 +115,7 @@ namespace TestGeoPagosApp
 
 			repoFemeninosMock.Setup(repo => repo.Add(It.IsAny<JugadorFemenino>())).Returns(jugadorFemenino);
 			mapperMock.Setup(mapper => mapper.Map<JugadorFemenino, JugadorFemeninoDto>(jugadorFemenino)).Returns(jugadorFemeninoDto);
-			mapperMock.Setup(mapper => mapper.Map<JugadorFemeninoDto,JugadorFemenino>(jugadorFemeninoDto)).Returns(jugadorFemenino);
+			mapperMock.Setup(mapper => mapper.Map<JugadorFemeninoDto, JugadorFemenino>(jugadorFemeninoDto)).Returns(jugadorFemenino);
 
 			// Act
 			var result = serviceJugadores.CrearJugador(jugadorFemeninoDto);
